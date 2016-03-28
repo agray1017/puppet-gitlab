@@ -121,6 +121,13 @@ class gitlab::setup inherits gitlab {
       ],
     }
 
+    rbenv::gem { 'bundler':
+      ensure => '1.11.2',
+      user   => $git_user,
+      home   => $git_home,
+      ruby   => $gitlab_ruby_version,
+    }
+
     #Gitlab <= 6.3 requires us to install the charlock_holmes gem
     rbenv::gem { 'charlock_holmes':
       ensure => '0.6.9.4',
